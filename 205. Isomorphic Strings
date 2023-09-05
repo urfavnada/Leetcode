@@ -1,0 +1,25 @@
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        if len(s) != len(t) :
+            return False
+        CharMap = {}
+        seenChar = set()
+
+    # For loop
+        for i in range(len(s)):
+            CharS = s[i]
+            CharT = t[i]
+            
+            if CharT in CharMap and CharMap[CharT] != CharS:
+                return False
+            
+            if CharT in CharMap and CharMap[CharT] == CharS:
+                continue
+            
+            if CharS in seenChar :
+                return False
+
+            
+            CharMap[CharT] = CharS
+            seenChar.add(CharS)
+        return True
