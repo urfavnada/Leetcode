@@ -1,0 +1,15 @@
+class Solution:
+    def checkSubarraySum(self, nums: List[int], k: int) -> bool:
+        prefix_sum = {0: -1}
+        current_sum = 0
+    
+        for i, num in enumerate(nums):
+            current_sum = (current_sum + num) % k
+            
+            if current_sum in prefix_sum:
+                if i - prefix_sum[current_sum] >= 2:
+                    return True
+            else:
+                prefix_sum[current_sum] = i
+        
+        return False
